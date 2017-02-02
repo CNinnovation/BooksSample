@@ -106,9 +106,11 @@ namespace UWPBooksClient
         {
             var services = new ServiceCollection();
             services.AddTransient<BooksViewModel>();
+            services.AddTransient<BookViewModel>();
             services.AddSingleton<IBooksService, BooksService>();
             services.AddSingleton<IAddressService, AddressService>();
             services.AddSingleton<IHttpHService, HttpHService>();
+            services.AddSingleton<ISelectedBookService, SelectedBookService>();
             Container = services.BuildServiceProvider();
         }
 

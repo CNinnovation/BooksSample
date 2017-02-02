@@ -19,6 +19,8 @@ namespace BooksViewModels.Services
             _addressService = addressService;
         }
 
+        public IEnumerable<Book> Books => _books;
+
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
             IEnumerable<Book> books = await _httpService.GetItemsAsync<Book>(_addressService.BooksUrl);
@@ -35,6 +37,6 @@ namespace BooksViewModels.Services
             _httpService?.Dispose();
         }
 
-        public IEnumerable<Book> Books => _books;
+
     }
 }

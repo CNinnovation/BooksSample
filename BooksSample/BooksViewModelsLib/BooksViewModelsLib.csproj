@@ -40,8 +40,11 @@
     <Compile Include="Services\IAddressService.cs" />
     <Compile Include="Services\IBooksService.cs" />
     <Compile Include="Services\IHttpService.cs" />
+    <Compile Include="Services\ISelectedBookService.cs" />
+    <Compile Include="Services\SelectedBookService.cs" />
     <Compile Include="ViewModels\BooksViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
