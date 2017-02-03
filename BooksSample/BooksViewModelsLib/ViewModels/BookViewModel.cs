@@ -103,7 +103,14 @@ namespace BooksViewModels.ViewModels
             CurrentEditMode = BookEditMode.Read;
         }
 
-        public void OnCancel() => CurrentEditMode = BookEditMode.Read;
+        public void OnCancel()
+        {
+            if (CurrentEditMode == BookEditMode.New)
+            {
+                _booksService.CancelAddBook();
+            }
+            CurrentEditMode = BookEditMode.Read;
+        }
 
         public bool CanEditBook() => _currentEditMode == BookEditMode.Read;
 

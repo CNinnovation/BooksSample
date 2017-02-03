@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BooksViewModels.Services
@@ -36,6 +37,15 @@ namespace BooksViewModels.Services
             Book newBook = Book.New;
             _books.Add(newBook);
             return newBook;
+        }
+
+        public void CancelAddBook()
+        {
+            var booksToRemove = _books.Where(b => b.Id == 0).ToArray();
+            for (int i = 0; i < booksToRemove.Length; i++)
+            {
+                _books.Remove(booksToRemove[i]);
+            }
         }
 
         public async Task<Book> AddBookAsync(Book book)

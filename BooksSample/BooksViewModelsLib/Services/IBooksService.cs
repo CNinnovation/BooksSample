@@ -10,6 +10,7 @@ namespace BooksViewModels.Services
 
         Task<IEnumerable<Book>> GetBooksAsync();
         Book PrepareAddBook();
+        void CancelAddBook();
         Task<Book> AddBookAsync(Book book);
         Task UpdateBookAsync(Book book);
     }
