@@ -64,8 +64,6 @@ namespace BooksViewModels.ViewModels
 
         public Book Book => _selectedBookService.Book;
 
-
-
         public void OnAddBook()
         {
             CurrentEditMode = BookEditMode.New;
@@ -105,13 +103,9 @@ namespace BooksViewModels.ViewModels
             CurrentEditMode = BookEditMode.Read;
         }
 
-        public void OnCancel()
-        {
-            CurrentEditMode = BookEditMode.Read;
-        }
+        public void OnCancel() => CurrentEditMode = BookEditMode.Read;
 
         public bool CanEditBook() => _currentEditMode == BookEditMode.Read;
-
 
         public bool CanAddBook() => _currentEditMode == BookEditMode.Read;
 
@@ -126,6 +120,5 @@ namespace BooksViewModels.ViewModels
             SaveBookCommand?.RaiseCanExecuteChanged();
             CancelBookCommand?.RaiseCanExecuteChanged();
         }
-
     }
 }
