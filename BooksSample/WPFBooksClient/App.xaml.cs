@@ -29,7 +29,7 @@ namespace WPFBooksClient
             services.AddTransient<BooksViewModel>();
             services.AddTransient<BookViewModel>();
             services.AddTransient<MainPageViewModel>();
-            services.AddSingleton<IBooksService, BooksService>();
+            services.AddSingleton<IBooksService, BooksSampleService>();
             services.AddSingleton<IAddressService, AddressService>();
             services.AddSingleton<IHttpHService, HttpHService>();
             services.AddSingleton<ISelectedBookService, SelectedBookService>();

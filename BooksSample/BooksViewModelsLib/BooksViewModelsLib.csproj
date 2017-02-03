@@ -36,6 +36,7 @@
     <Compile Include="Events\InProgressEvent.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Services\AddressService.cs" />
+    <Compile Include="Services\BooksSampleService.cs" />
     <Compile Include="Services\BooksService.cs" />
     <Compile Include="Services\HttpService.cs" />
     <Compile Include="Services\IAddressService.cs" />
