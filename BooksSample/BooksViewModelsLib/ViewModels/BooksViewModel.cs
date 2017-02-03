@@ -38,7 +38,7 @@ namespace BooksViewModels.ViewModels
 
         private async void OnGetBooksAsync()
         {
-            InProgressEventArgs args = new InProgressEventArgs { Id = Guid.NewGuid().ToString(), Completed = false };
+            InProgressEventArgs args = new InProgressEventArgs();
             try
             {
                 _eventAggregator.GetEvent<InProgressEvent>().Publish(args);
@@ -49,7 +49,7 @@ namespace BooksViewModels.ViewModels
             {
                 await _dialogService.ShowMessageAsync(ex.Message);
             }
-            args.Completed = true;
+            args.SetComplete();
             _eventAggregator.GetEvent<InProgressEvent>().Publish(args);
            
         }

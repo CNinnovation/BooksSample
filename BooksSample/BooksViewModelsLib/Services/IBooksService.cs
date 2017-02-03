@@ -9,5 +9,8 @@ namespace BooksViewModels.Services
         IEnumerable<Book> Books { get; }
 
         Task<IEnumerable<Book>> GetBooksAsync();
+        Book PrepareAddBook();
+        Task<Book> AddBookAsync(Book book);
+        Task<Book> UpdateBookAsync(Book book);
     }
 }

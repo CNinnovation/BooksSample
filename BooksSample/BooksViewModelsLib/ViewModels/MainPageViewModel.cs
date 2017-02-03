@@ -21,11 +21,11 @@ namespace BooksViewModels.ViewModels
 
             _eventAggregator.GetEvent<InProgressEvent>().Subscribe(args =>
             {
-                if (!args.Completed)
+                if (!args.IsCompleted)
                 {
                     inProgressList.Add(args.Id);
                 }
-                else if (args.Completed && inProgressList.Contains(args.Id))
+                else if (args.IsCompleted && inProgressList.Contains(args.Id))
                 {
                     inProgressList.Remove(args.Id);
                 }

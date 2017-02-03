@@ -1,7 +1,10 @@
-﻿using BooksViewModels.Models;
+﻿using BooksViewModels.Events;
+using BooksViewModels.Models;
 using BooksViewModels.Services;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
+using System;
 
 namespace BooksViewModels.ViewModels
 {
@@ -16,11 +19,15 @@ namespace BooksViewModels.ViewModels
     {
         private readonly IBooksService _booksService;
         private readonly ISelectedBookService _selectedBookService;
+        private readonly IDialogService _dialogService;
+        private readonly IEventAggregator _eventAggregator;
 
-        public BookViewModel(IBooksService booksService, ISelectedBookService selectedBookService)
+        public BookViewModel(IBooksService booksService, ISelectedBookService selectedBookService, IDialogService dialogService, IEventAggregator eventAggregator)
         {
             _booksService = booksService;
             _selectedBookService = selectedBookService;
+            _dialogService = dialogService;
+            _eventAggregator = eventAggregator;
 
             AddBookCommand = new DelegateCommand(OnAddBook, CanAddBook);
             EditBookCommand = new DelegateCommand(OnEditBook, CanEditBook);
@@ -62,16 +69,39 @@ namespace BooksViewModels.ViewModels
         public void OnAddBook()
         {
             CurrentEditMode = BookEditMode.New;
+            Book newBook = _booksService.PrepareAddBook();
+            _selectedBookService.Book = newBook;
         }
 
-        public void OnEditBook()
-        {
-            CurrentEditMode = BookEditMode.Edit;
-        }
+        public void OnEditBook() => CurrentEditMode = BookEditMode.Edit;
 
-        public void OnSaveBook()
+
+        public async void OnSaveBook()
         {
-            // TODO: save using service
+            InProgressEventArgs args = new InProgressEventArgs();
+            _eventAggregator.GetEvent<InProgressEvent>().Publish(args);
+            try
+            {
+                switch (CurrentEditMode)
+                {
+                    case BookEditMode.Edit:
+                        await _booksService.UpdateBookAsync(_selectedBookService.Book);
+                        break;
+                    case BookEditMode.New:
+                        Book newBook = await _booksService.AddBookAsync(_selectedBookService.Book);
+                        await _booksService.GetBooksAsync();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowMessageAsync(ex.Message);
+            }
+
+            args.SetComplete();
+            _eventAggregator.GetEvent<InProgressEvent>().Publish(args);
             CurrentEditMode = BookEditMode.Read;
         }
 
