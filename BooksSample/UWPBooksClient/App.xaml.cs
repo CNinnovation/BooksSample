@@ -1,11 +1,13 @@
 ﻿using BooksViewModels.Services;
 using BooksViewModels.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UWPBooksClient.UWPServices;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -107,10 +109,13 @@ namespace UWPBooksClient
             var services = new ServiceCollection();
             services.AddTransient<BooksViewModel>();
             services.AddTransient<BookViewModel>();
+            services.AddTransient<MainPageViewModel>();
             services.AddSingleton<IBooksService, BooksService>();
             services.AddSingleton<IAddressService, AddressService>();
             services.AddSingleton<IHttpHService, HttpHService>();
             services.AddSingleton<ISelectedBookService, SelectedBookService>();
+            services.AddSingleton<IDialogService, UWPDialogService>();
+            services.AddSingleton<IEventAggregator, EventAggregator>();
             Container = services.BuildServiceProvider();
         }
 

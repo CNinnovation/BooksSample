@@ -32,11 +32,21 @@ namespace BooksViewModels.Services
             return books;
         }
 
+        public async Task<Book> AddBookAsync(Book book)
+        {
+            Book addedBook = await _httpService.AddItem(_addressService.BooksUrl, book);
+            return addedBook;
+        }
+
+        public async Task<Book> UpdateBookAsync(Book book)
+        {
+            Book updatedBook = await _httpService.UpdateItem(_addressService.BooksUrl, book);
+            return updatedBook;
+        }
+ 
         public void Dispose()
         {
             _httpService?.Dispose();
         }
-
-
     }
 }

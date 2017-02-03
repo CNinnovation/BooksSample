@@ -29,6 +29,11 @@ namespace BooksViewModels.ViewModels
 
             CurrentEditMode = BookEditMode.Read;
             UpdateCommandState();
+
+            _selectedBookService.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "Book") OnPropertyChanged("Book");  // fire property change on view-model Book if referenced Book fires change
+            };
         }
 
         public DelegateCommand AddBookCommand { get; }

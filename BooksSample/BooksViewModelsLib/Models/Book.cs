@@ -31,5 +31,6 @@ namespace BooksViewModels.Models
 
         public override string ToString() => Title;
 
+        public static Book Empty => new Book();
     }
 }

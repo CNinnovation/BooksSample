@@ -95,7 +95,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\BookEditModeToIsReadonlyConverter.cs" />
+    <Compile Include="Utilities\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilities\ObjectToObjectConverter.cs" />
+    <Compile Include="UWPServices\UWPDialogService.cs" />
     <Compile Include="Views\BooksUC.xaml.cs">
       <DependentUpon>BooksUC.xaml</DependentUpon>
     </Compile>

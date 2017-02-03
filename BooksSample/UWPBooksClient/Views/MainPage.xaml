@@ -4,16 +4,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPBooksClient"
     xmlns:views="using:UWPBooksClient.Views" 
+    xmlns:utils="using:UWPBooksClient.Utilities"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <utils:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <views:BooksUC />
-        <views:BookUC Grid.Column="1" />
+        <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsIndeterminate="True" x:Name="progressBar" MinHeight="10" Visibility="{x:Bind ViewModel.InProgress, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <views:BooksUC Grid.Row="1" />
+        <views:BookUC Grid.Row="1" Grid.Column="1" />
     </Grid>
 </Page>
