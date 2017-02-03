@@ -42,19 +42,18 @@ namespace BooksViewModels.Services
             string json = JsonConvert.SerializeObject(item);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync(url, content);
+            response.EnsureSuccessStatusCode();
             json = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(json);
             return result;
         }
 
-        public async Task<T> UpdateItem<T>(string url, T item)
+        public async Task UpdateItem<T>(string url, T item)
         {
             string json = JsonConvert.SerializeObject(item);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PutAsync(url, content);
-            json = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<T>(json);
-            return result;
+            response.EnsureSuccessStatusCode();
         }
 
         public void Dispose()

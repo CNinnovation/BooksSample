@@ -3,6 +3,6 @@
     public class AddressService : IAddressService
     {
         public string BaseUrl { get; } = "http://localhost:18013/api/";
-        public string BooksUrl => BaseUrl + "Books";
+        public string BooksUrl => BaseUrl + "Books/";
     }
 }

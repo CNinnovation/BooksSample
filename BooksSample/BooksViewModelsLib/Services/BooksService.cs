@@ -44,11 +44,7 @@ namespace BooksViewModels.Services
             return addedBook;
         }
 
-        public async Task<Book> UpdateBookAsync(Book book)
-        {
-            Book updatedBook = await _httpService.UpdateItem(_addressService.BooksUrl, book);
-            return updatedBook;
-        }
+        public async Task UpdateBookAsync(Book book) => await _httpService.UpdateItem($"{_addressService.BooksUrl}{book.Id}", book);
  
         public void Dispose()
         {

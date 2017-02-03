@@ -11,6 +11,6 @@ namespace BooksViewModels.Services
         Task<IEnumerable<Book>> GetBooksAsync();
         Book PrepareAddBook();
         Task<Book> AddBookAsync(Book book);
-        Task<Book> UpdateBookAsync(Book book);
+        Task UpdateBookAsync(Book book);
     }
 }

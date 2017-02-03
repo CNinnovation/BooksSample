@@ -9,6 +9,6 @@ namespace BooksViewModels.Services
         Task<T> AddItem<T>(string url, T item);
         Task<T> GetItemById<T>(string url, int id);
         Task<IEnumerable<T>> GetItemsAsync<T>(string url);
-        Task<T> UpdateItem<T>(string url, T item);
+        Task UpdateItem<T>(string url, T item);
     }
 }
