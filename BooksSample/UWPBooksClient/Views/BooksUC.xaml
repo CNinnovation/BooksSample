@@ -21,6 +21,7 @@
         </Grid.RowDefinitions>
         <CommandBar IsOpen="True" IsSticky="True">
             <AppBarButton Icon="Refresh" Label="Refresh" Command="{x:Bind ViewModel.RefreshBooksCommand, Mode=OneTime}" />
+            <AppBarButton Icon="NewWindow" Label="New Window" Command="{x:Bind ViewModel.NewWindowCommand, Mode=OneTime}" />
         </CommandBar>
 
         <ListBox Grid.Row="1" ItemsSource="{x:Bind ViewModel.Books, Mode=OneTime}"

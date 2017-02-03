@@ -16,25 +16,29 @@ namespace BooksViewModels.ViewModels
         private readonly ISelectedBookService _selectedBookService;
         private readonly IDialogService _dialogService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IOpenWindow _openWindow;
 
-        public BooksViewModel(IBooksService booksService, ISelectedBookService selectedBookService, IDialogService dialogService, IEventAggregator eventAggregator)
+        public BooksViewModel(IBooksService booksService, ISelectedBookService selectedBookService, IDialogService dialogService, IEventAggregator eventAggregator, IOpenWindow openWindow)
         {
             _booksService = booksService;
             _selectedBookService = selectedBookService;
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
+            _openWindow = openWindow;
 
             _selectedBookService.PropertyChanged += (sender, e) =>
             {
                 base.OnPropertyChanged(nameof(CurrentBook));
             };
 
-            RefreshBooksCommand = new DelegateCommand(OnGetBooksAsync);
+            RefreshBooksCommand = new DelegateCommand(OnGetBooks);
+            NewWindowCommand = new DelegateCommand(OnNewWindow);
         }
 
         public DelegateCommand RefreshBooksCommand { get; }
+        public DelegateCommand NewWindowCommand { get; }
 
-        private async void OnGetBooksAsync()
+        public async void OnGetBooks()
         {
             InProgressEventArgs args = new InProgressEventArgs();
             try
@@ -48,8 +52,12 @@ namespace BooksViewModels.ViewModels
                 await _dialogService.ShowMessageAsync(ex.Message);
             }
             args.SetComplete();
-            _eventAggregator.GetEvent<InProgressEvent>().Publish(args);
-           
+            _eventAggregator.GetEvent<InProgressEvent>().Publish(args);           
+        }
+
+        public void OnNewWindow()
+        {
+            _openWindow.OpenWindowAsync();
         }
 
         public IEnumerable<Book> Books => _booksService.Books;

@@ -43,6 +43,7 @@
     <Compile Include="Services\IBooksService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IHttpService.cs" />
+    <Compile Include="Services\IOpenWindow.cs" />
     <Compile Include="Services\ISelectedBookService.cs" />
     <Compile Include="Services\SelectedBookService.cs" />
     <Compile Include="ViewModels\BooksViewModel.cs" />

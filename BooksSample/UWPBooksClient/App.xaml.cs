@@ -116,6 +116,7 @@ namespace UWPBooksClient
             services.AddSingleton<ISelectedBookService, SelectedBookService>();
             services.AddSingleton<IDialogService, UWPDialogService>();
             services.AddSingleton<IEventAggregator, EventAggregator>();
+            services.AddSingleton<IOpenWindow, UWPOpenWindow>();
             Container = services.BuildServiceProvider();
         }
 
