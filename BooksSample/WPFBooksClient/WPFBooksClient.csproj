@@ -135,6 +135,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="WPFServices\WPFDialogService.cs" />
+    <Compile Include="WPFServices\WPFOpenWindow.cs" />
     <Page Include="Views\BooksUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

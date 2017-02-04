@@ -34,6 +34,7 @@ namespace WPFBooksClient
             services.AddSingleton<IHttpHService, HttpHService>();
             services.AddSingleton<ISelectedBookService, SelectedBookService>();
             services.AddSingleton<IDialogService, WPFDialogService>();
+            services.AddSingleton<IOpenWindow, WPFOpenWindow>();
             services.AddSingleton<IEventAggregator, EventAggregator>();
             Container = services.BuildServiceProvider();
         }
