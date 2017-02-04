@@ -10,8 +10,7 @@ namespace BooksViewModels.Services
         public Book Book
         {
             get => _book;
-            set { SetProperty(ref _book, value); }
+            set => SetProperty(ref _book, value);
         }
-
     }
 }

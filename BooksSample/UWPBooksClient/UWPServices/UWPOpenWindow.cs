@@ -23,7 +23,7 @@ namespace UWPBooksClient.UWPServices
             await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 var frame = new Frame();
-                frame.Navigate(typeof(BookPage));
+                frame.Navigate(typeof(ToolsPage));
                 Window.Current.Content = frame;
                 Window.Current.Activate();
 
